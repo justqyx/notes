@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bar Chart</title>
+  <script type="text/javascript" src="../javascripts/d3.v3.min.js"></script>
+  <style type="text/css">
+    .axis path, .axis line { fill: none; stroke: black; shape-rendering: cirspEdges; }
+    .axis text { font-family: sans-serif; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    var w = 500, h = 100, padding = 5;
+    var dataSet = new Array();
+
+    // [25, 35]
+    num = parseInt(Math.random()*10+25);
+
+    // 随机生成 num 个 [10, 50] 的数
+    for (var i = num - 1; i >= 0; i--) {
+      dataSet.push(Math.floor((Math.random()*40+10)));
+    };
+
+    var svg = d3.select("body").append("svg")
+      .attr("width", w)
+      .attr("height", h)
+
+    var xScale = d3.scale.linear()
+      .domain([0, dataSet.length])
+      .range([padding, w - padding])
+
+    var yScale = d3.scale.linear()
+      .domain([0, d3.max(dataSet, function(d){return d;})])
+      .range([padding, h - padding])
+
+    var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+    var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+    svg.selectAll("rect")
+      .data(dataSet)
+      .enter()
+        .append("rect")
+          .attr("x", function(d, i) { return i*(w/dataSet.length); })
+          .attr("y", function(d){ return (h - d - 30 ); })
+          .attr("width", w/dataSet.length - 2)
+          .attr("height", function(d){ return d; })
+
+    svg.selectAll("text")
+      .data(dataSet)
+      .enter()
+        .append("text")
+          .text(function(d){ return d; })
+          .attr("x", function(d, i) { return i*(w/dataSet.length); })
+          .attr("y", function(d) { return h-d+12; })
+          .attr("font-family", "sans-serif")
+          .attr("font-size", "11px")
+          .attr("fill", "white")
+
+    svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0, " + (h - padding - 20) + ")")
+      .call(xAxis);
+    svg.append("g")
+      .attr("class", "axis")
+      .call(yAxis);
+
+  </script>
+</body>
+</html>

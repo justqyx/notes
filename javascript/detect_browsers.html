@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>检测浏览器版本</title>
+  <style type="text/css">
+tabe.dataintable {
+  border: 1px solid #aaa;
+  border-collapse: collapse;
+}
+table.dataintable th {
+ vertical-align: baseline;
+ padding: 5px 15px 5px 5px;
+ background-color: #d5d5d5;
+ border: 1px solid #aaa;
+ text-align: left;
+}
+table.dataintable td {
+  vertical-align: text-top;
+  pading: 5px 15px 5px 5px;
+  background-color: #efefef;
+  border: 1px solid #aaa;
+}
+.ie-warning { width: 100%; position: absolute; top: 0; left: 0; background: #ffffe1; padding: 5px 0; font-size: 12px; }
+.ie-warning p { width: 960px; margin:0 auto; }
+  </style>
+  <script type="text/javascript">
+window.onload = function(){
+  var userAgent = window.navigator.userAgent.toLowerCase();
+  var browser = {
+    version: (userAgent.match(/(?:firefox|opera|safari|chrome|msie)[\/: ]([\d.]+)/))[1],
+    safari: /version.+safari/.test(userAgent),
+    chrome: /chrome/.test(userAgent),
+    firefox: /firefox/.test(userAgent),
+    ie: /msie/.test(userAgent),
+    opera: /opera/.test(userAgent )
+  };
+  alert(parseInt(browser.version));
+
+  var output = function(name) {
+    var content = "当前浏览器：" + name + " " + browser.version
+    document.getElementById("browser").innerHTML = content;
+  }
+
+  if (browser.safari) { output("Safari"); }
+  else if (browser.chrome) { output("Chrome"); }
+  else if (browser.firefox) { output("Firefox"); }
+  else if (browser.ie) { output("IE"); }
+  else if (browser.opera) { output("Opera"); }
+
+  var setValue = function(id, content) {
+    var node = document.getElementById(id);
+    node.innerHTML = content;
+  }
+
+  setValue("appCodeName", navigator.appCodeName);
+  setValue("appMinorVersion", navigator.appMinorVersion);
+  setValue("appName", navigator.appName);
+  setValue("appVersion", navigator.appVersion);
+  setValue("browserLanguage", navigator.browserLanguage);
+  setValue("cookieEnabled", navigator.cookieEnabled);
+  setValue("cpuClass", navigator.cpuClass);
+  setValue("onLine", navigator.onLine);
+  setValue("platform", navigator.platform);
+  setValue("systemLanguage", navigator.systemLanguage);
+  setValue("userAgent", navigator.userAgent);
+  setValue("userLanguage", navigator.userLanguage);
+}
+
+  </script>
+
+</head>
+<body>
+<div class='ie-warning' style="display:none;">
+  <p>由于您的浏览器版本过低，处于功能和安全性考虑，可能会无法正常使用我们的网站，请您下载360急速浏览器或谷歌浏览器</p>
+</div>
+
+<h1 id="browser"></h1>
+
+<table class="dataintable" cellspacing="0">
+  <tbody>
+    <tr>
+      <th style="width:30%">属性</th>
+      <th>描述</th>
+      <th>当前浏览器的值</th>
+    </tr>
+    <tr>
+      <td>appCodeName</td>
+      <td>返回浏览器的代码名。</td>
+      <td id="appCodeName"></td>
+    </tr>
+    <tr>
+      <td>appMinorVersion</td> 
+      <td>返回浏览器的次级版本。</td>
+      <td id="appMinorVersion"></td>
+    </tr>
+    <tr>
+      <td>appName</td>
+      <td>返回浏览器的名称。</td>
+      <td id="appName"></td>
+    </tr>
+    <tr>
+      <td>appVersion</td>
+      <td>返回浏览器的平台和版本信息。</td>
+      <td id="appVersion"></td>
+    </tr>
+    <tr>
+      <td>browserLanguage</td>
+      <td>返回当前浏览器的语言。</td>
+      <td id="browserLanguage"></td>
+    </tr>
+    <tr>
+      <td>cookieEnabled</td>
+      <td>返回指明浏览器中是否启用 cookie 的布尔值。</td>
+      <td id="cookieEnabled"></td>
+    </tr>
+    <tr>
+      <td>cpuClass</td>
+      <td>返回浏览器系统的 CPU 等级。</td>
+      <td id="cpuClass"></td>
+    </tr>
+    <tr>
+      <td>onLine</td>
+      <td>返回指明系统是否处于脱机模式的布尔值。</td>
+      <td id="onLine"></td>
+    </tr>
+    <tr>
+      <td>platform</td>
+      <td>返回运行浏览器的操作系统平台。</td>
+      <td id="platform"></td>
+    </tr>
+    <tr>
+      <td>systemLanguage</td>
+      <td>返回 OS 使用的默认语言。</td>
+      <td id="systemLanguage"></td>
+    </tr>
+    <tr>
+      <td>userAgent</td>
+      <td>返回由客户机发送服务器的 user-agent 头部的值。</td>
+      <td id="userAgent"></td>
+    </tr>
+    <tr>
+      <td>userLanguage</a></td>
+      <td>返回 OS 的自然语言设置。</td>
+      <td id="userLanguage"></td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>

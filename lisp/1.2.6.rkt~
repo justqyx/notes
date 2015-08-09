@@ -1,0 +1,7 @@
+#lang racket
+
+;; 其实就是定义一个函数 f(x) = x;
+(define zero (lambda (f) (lambda (x) (x))))
+
+(define (add-1 n)
+  (lambda (f) (lambda (x) (f (n f) x))))

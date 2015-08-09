@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>03 Page Template</title>
+  <script type="text/javascript" src="../javascripts/d3.v3.min.js"></script>
+  <style type="text/css">
+    div.bar { display: inline-block; width: 20px; margin-right: 2px; background-color: teal; }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    var dataSet = [5, 10, 15, 20, 25];
+    var dataSet1 = new Array();
+
+    for (var i = 20; i >= 0; i--) {
+      // 随机生成 [10, 50] 之间的数
+      dataSet1.push(Math.random()*50 + 10);
+    };
+
+    d3.select("body").selectAll("p")
+      .data(dataSet)
+      .enter()
+        .append("p")
+          .text(function(d){ return "new paragraph by " + d; })
+          .style("color", function(d) { return (d > 15 ? "red" : "black"); })
+
+    d3.select("body").selectAll("div")
+      .data(dataSet1)
+      .enter()
+        .append("div")
+          .attr("class", "bar")
+          .style("height", function(d) { return d*2 + "px"; })
+  </script>
+</body>
+</html>
